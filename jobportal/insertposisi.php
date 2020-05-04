@@ -8,16 +8,15 @@ if ($connection === false) {
 }
 
 // Escape user inputs for security
-$fullname = mysqli_real_escape_string($link, $_POST['fullname']);
-$deskripsi = mysqli_real_escape_string($link, $_REQUEST['Deskripsi']);
-// $fullname    = $_POST['namaJabatan'];
-// $deskripsi   = $_POST['Deskripsi'];
+$fullname    = $_POST['fullname'];
+$deskripsi   = $_POST['deskripsi'];
 $sql = "INSERT INTO posisi(namaJabatan, Deskripsi)
             VALUES('$fullname','$deskripsi')";
 if (mysqli_query($connection, $sql)) {
     // jika berhasil, redirect ke index.php
-    // header('Location:index.php');
+    echo var_dump($sql);
     echo var_dump($fullname);
+    header('Location:index.php');
 } else {
     // jika tidak, tampilkan pesan gagal menyimpan
     echo "Ouppsss..., maap proses menyimpan data tidak berhasil";
