@@ -31,7 +31,6 @@
                     <form action="apply.php" method="POST">
                         <?php
                         $posisi = $_POST['aksi'];
-                        echo $_POST['aksi'];
                         ?>
                         <input type="hidden" name="posisi" value=" <?= $_POST['aksi'] ?>">
                         <div class="form-row">
