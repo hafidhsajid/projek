@@ -44,7 +44,7 @@
                     <li class="nav-item"><a href="blog.php" class="nav-link">Blog</a></li>
                     <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
                     <li class="nav-item cta mr-md-2"><a href="new-post.php" class="nav-link">Post a Job</a></li>
-                    <li class="nav-item cta cta-colored"><a href="job-post.php" class="nav-link">Want a Job</a></li>
+                    <li class="nav-item cta cta-colored"><a href="pelamar.php" class="nav-link">Want a Job</a></li>
 
                 </ul>
             </div>

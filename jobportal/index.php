@@ -76,16 +76,17 @@ while ($data = mysqli_fetch_array($sql)) {
         <div> <span>' . $data['Deskripsi'] . '</span></div>
         </div>
       </div>
-
+      
       <div class="ml-auto d-flex">
-        <a href="job-single.html" class="btn btn-primary py-2 mr-1" value="' . $data['namaJabatan'] . '">Apply Job</a>
-        </a>
+        <form action="registration.php" method="POST">
+        <input class="btn btn-primary py-2 mr-1" type="hidden" name="aksi" value="' . $data['id'] . '">
+        <input class="btn btn-primary py-2 mr-1" type="submit" name="action" value="Apply Job">
+        </form>
       </div>
     </div>
   </div>';
 }
 ?>
-
 </div>
 
 
