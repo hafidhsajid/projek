@@ -72,13 +72,10 @@ while ($data = mysqli_fetch_array($sql)) {
     $result = $connection->query($querry);
     $rowdaftar = $result->fetch_assoc();
     $idposisi = $rowdaftar['idPosisi'];
-    echo $tempid;
-    echo $querry;
 
     $querrygetposisi = "select * from posisi where id = '$idposisi'";
     $result = $connection->query($querrygetposisi);
     $rowposisi = $result->fetch_assoc();
-    echo $querrygetposisi;
     print '<div class="col-md-12 ftco-animate">
     
     <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
