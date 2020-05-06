@@ -62,10 +62,25 @@ include('header.php');
 <?php
 require("fungsi.php");
 $sql = mysqli_query($connection, "select * from pelamar");
+$detailid = $_POST['aksi'];
+$querry = "select * from daftar where id = '$detailid'";
+$result = $connection->query($querry);
 while ($data = mysqli_fetch_array($sql)) {
     # code...
-    print '<div class="col-md-12 ftco-animate">
+    $tempid = $data['id'];
+    $querry = "select * from daftar where idPelamar = '$tempid'";
+    $result = $connection->query($querry);
+    $rowdaftar = $result->fetch_assoc();
+    $idposisi = $rowdaftar['idPosisi'];
+    echo $tempid;
+    echo $querry;
 
+    $querrygetposisi = "select * from posisi where id = '$idposisi'";
+    $result = $connection->query($querrygetposisi);
+    $rowposisi = $result->fetch_assoc();
+    echo $querrygetposisi;
+    print '<div class="col-md-12 ftco-animate">
+    
     <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
 
       <div class="mb-4 mb-md-0 mr-5">
@@ -74,22 +89,51 @@ while ($data = mysqli_fetch_array($sql)) {
         </div>
         <div class="job-post-item-body d-block d-md-flex">
         <div class="mr-3"> <span class="icon-phone"> <span>' . $data['nomerhp'] . '</span></div>
-        <div> <span class="icon-contact_mail"></span> <span>' . $data['email'] . '</span></div>
-        </div>
+        <div class="mr-3"> <span class="icon-contact_mail"></span> <span>' . $data['email'] . '</span></div>';
+    if ($rowposisi == null) {
+        # code...
+    } else {
+        print '<div > <span class="icon-edit_location"></span> <span>' . $rowposisi['namaJabatan'] . '</span></div>';
+    }
+    print '</div>
       </div>
       
       <div class="ml-auto d-flex">
-        <form action="registration.php" method="POST">
+        <form action="detail.php" method="POST">
         <input class="btn btn-primary py-2 mr-1" type="hidden" name="aksi" value="' . $data['id'] . '">
-        <input class="btn btn-primary py-2 mr-1" type="hidden" name="action" value="Apply Job">
+        <input class="btn btn-primary py-2 mr-1" type="submit" name="action" value="Detail">
+        
         </form>
       </div>
     </div>
+    
   </div>';
 }
 ?>
 </div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+                <?php echo var_dump($data); ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
     <div class="container">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 05, 2020 at 05:05 AM
+-- Generation Time: May 06, 2020 at 05:04 PM
 -- Server version: 5.7.29-0ubuntu0.18.04.1
 -- PHP Version: 7.2.24-0ubuntu0.18.04.4
 
@@ -38,7 +38,16 @@ CREATE TABLE `daftar` (
 
 INSERT INTO `daftar` (`id`, `idPelamar`, `idPosisi`) VALUES
 (1, 1, 1),
-(18, 82, 2);
+(19, 19, 5),
+(20, 83, 5),
+(21, 84, 2),
+(22, 4, 1),
+(23, 19, 3),
+(24, 26, 2),
+(25, 85, 5),
+(28, 80, 7),
+(29, 81, 5),
+(30, 59, 8);
 
 -- --------------------------------------------------------
 
@@ -51,7 +60,7 @@ CREATE TABLE `pelamar` (
   `nama` varchar(255) NOT NULL,
   `nomerhp` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `message` varchar(255) DEFAULT NULL,
+  `message` text,
   `dataCV` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -60,24 +69,21 @@ CREATE TABLE `pelamar` (
 --
 
 INSERT INTO `pelamar` (`id`, `nama`, `nomerhp`, `email`, `message`, `dataCV`) VALUES
-(1, 'hafidhsajid', '089999999', '', NULL, ''),
-(4, 'nama', '089999', 'email@email.com', 'null', 'tset'),
+(1, 'hafidhsajid', '089999999', 'email@gmai.com', 'test message', ''),
+(4, 'nama', '089999', 'nama@email.com', 'gvdtfhjkljhgfdsdfghjklkjhgfdfghuibhijoifjsdfjfdjsflasjfakl;sdjaf;jfwjfoewjoiofajesofjdsafjdlkfjdslkfjdklfajfdskjfdhskljfashkjfhfkasdjafdsjfsdjfdsjfdskjfadsjsdjoifjoiwdfsj', 'tset'),
 (19, 'asdf', 'asdf', 'asdf@email.com', 'test messagecccc', 'result.wav'),
-(26, 'test', 'test', 'sadf@gmailcom', '', ''),
-(46, 'cobak lagi', '1281832912321', '', '', ''),
-(47, 'cobak lagi lagii', '1281832912321', '', '', ''),
-(48, 'cobak lagi lagii', '1281832912321', '', '', ''),
-(53, 'aukk ahhh', '1281832912321', '', '', ''),
-(54, 'aukk ahhh', '1281832912321', '', '', ''),
-(57, 'testing lagi', '888888888', '', '', ''),
-(59, 'qualiti cobak', '8888888888', '', '', ''),
-(60, 'testi', '181u92', '', '', ''),
-(61, 'testi', '181u92', '', '', ''),
-(62, 'testilagiii', '181u92', '', '', ''),
-(79, 'percobaan ini', '88881231', '', '', ''),
-(80, 'UI UX 7', '938192381', '', '', ''),
-(81, 'ini sistem analis', '213133123', '', '', ''),
-(82, 'cobakkk', '12312312321312', 'asdf@email.com', 'ini message', '');
+(26, 'test', 'test', 'email@email.com', 'test message', ''),
+(48, 'cobak lagi lagii', '1281832912321', 'email@email.com', 'test message', ''),
+(54, 'aukk ahhh', '1281832912321', 'email@email.com', 'test message', ''),
+(57, 'testing lagi', '888888888', 'email@email.com', 'test message', ''),
+(59, 'qualiti cobak', '8888888888', 'email@email.com', 'test message', ''),
+(61, 'testi', '181u92', 'email@email.com', 'test message', ''),
+(79, 'percobaan ini', '88881231', 'email@email.com', 'test message', ''),
+(80, 'UI UX 7', '938192381', 'email@email.com', 'test message', ''),
+(81, 'ini sistem analis', '213133123', 'email@email.com', 'test message', ''),
+(83, 'asdf', 'asdf', 'asdf@email.com', 'testt', ''),
+(84, 'asdfsasfd', '0989785643', 'asdf@email.com', '', ''),
+(85, 'And', '1414124901802', 'asdf@email.com', 'Cobak message', '');
 
 -- --------------------------------------------------------
 
@@ -137,17 +143,17 @@ ALTER TABLE `posisi`
 -- AUTO_INCREMENT for table `daftar`
 --
 ALTER TABLE `daftar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `pelamar`
 --
 ALTER TABLE `pelamar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 --
 -- AUTO_INCREMENT for table `posisi`
 --
 ALTER TABLE `posisi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Constraints for dumped tables
 --

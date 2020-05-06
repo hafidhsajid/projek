@@ -20,59 +20,61 @@
 </head>
 
 <body>
+    <?php
+    include('connection.php');
+    $posisi = $_POST['aksi'];
+    $detailid = $_POST['aksi'];
+    $querry = "select * from posisi where id = '$posisi'";
+    $result = $connection->query($querry);
+    $rowposisi = $result->fetch_assoc();
 
+
+
+    $detailid = $_POST['aksi'];
+    $querry = "select * from posisi where id = '$posisi'";
+    $result = $connection->query($querry);
+
+    ?>
     <div class="page-wrapper bg-dark p-t-100 p-b-50">
         <div class="wrapper wrapper--w900">
             <div class="card card-6">
                 <div class="card-heading">
-                    <h2 class="title">Apply for job</h2>
+                    <h2 class="title">Apply for job <?php print $rowposisi['namaJabatan']; ?></h2>
                 </div>
                 <div class="card-body">
                     <form action="apply.php" method="POST">
-                        <?php
-                        $posisi = $_POST['aksi'];
-                        ?>
+
                         <input type="hidden" name="posisi" value=" <?= $_POST['aksi'] ?>">
                         <div class="form-row">
                             <div class="name">Full name</div>
-                            <div class="value">
-                                <input class="input--style-6" type="text" name="full_name">
+                            <div class="input">
+                                <input class="input--style-6" type="text" name="full_name" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="name">Phone number</div>
-                            <div class="value">
-                                <input class="input--style-6" type="text" id="phone" name="phone">
+                            <div class="input">
+                                <input class="input--style-6" type="number" id="phone" name="phone" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="name">Email address</div>
-                            <div class="value">
+                            <div class="input">
                                 <div class="input-group">
-                                    <input class="input--style-6" type="email" name="email" placeholder="example@email.com">
+                                    <input class="input--style-6" type="email" name="email" placeholder="example@email.com" required>
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="name">Message</div>
-                            <div class="value">
+                            <div class="input">
                                 <div class="input-group">
                                     <textarea class="textarea--style-6" name="message" placeholder="Message sent to the employer"></textarea>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="name">Upload CV</div>
-                            <div class="value">
-                                <div class="input-group js-input-file">
-                                    <input class="input-file" type="file" name="file" id="file">
-                                    <label class="label--file" for="file">Choose file</label>
-                                    <span class="input-file__info">No file chosen</span>
-                                </div>
-                                <div class="label--desc">Upload your CV/Resume or any other relevant file. Max file size 50 MB</div>
-                            </div>
                             <button class="btn btn--radius-2 btn--blue-2" value="POST" name="submit" type="submit">Send Application</button>
                         </div>
+
                     </form>
                 </div>
                 <div class="card-footer">
