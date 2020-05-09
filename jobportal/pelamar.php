@@ -62,7 +62,8 @@ include('header.php');
 <?php
 require("fungsi.php");
 $sql = mysqli_query($connection, "select * from pelamar");
-$detailid = $_POST['aksi'];
+$detailid = NULL;
+//$detailid = $_POST['aksi'];
 $querry = "select * from daftar where id = '$detailid'";
 $result = $connection->query($querry);
 while ($data = mysqli_fetch_array($sql)) {
