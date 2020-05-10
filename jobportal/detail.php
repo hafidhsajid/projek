@@ -50,11 +50,22 @@
                         <div class="name">Message</div>
                         <div class="value">' . $row["message"] .
                             '</div></div>';
+                        print '<div class="form-row">
+                        <div class="name">Message</div>
+                        <div class="value">' . $row["dataCV"] .
+                            '</div></div>';
+
+                        print '<div class="form-row mr-2">';
+                        print '<form action="opencvpdf.php" method="post">
+                        <input type="hidden" name="cv" value="' . $row['dataCV'] . '">
+                        <a href="pelamar.php" class="btn btn--radius-2 btn--red btn--pad">Back</a>
+                        <button type=" submit" class="btn btn--radius-2 btn--blue ">Open pdf</button>
+                        
+                        </form>
+                        </div>
+                        ';
                     }
                     ?>
-                    <div class="form-row">
-                        <button onclick="window.location.href='pelamar.php';" class="btn btn--radius-2 btn--red">Back</button>
-                    </div>
                 </div>
                 <div class="card-footer">
                 </div>

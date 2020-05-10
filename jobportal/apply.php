@@ -15,23 +15,44 @@ if (isset($_POST)) {
     $posisi     = $_POST['posisi'];
     $fullname   = $_POST['full_name'];
     $phone      = $_POST['phone'];
-    $birthday   = $_POST['birthday'];
     $email      = $_POST['email'];
     $message    = $_POST['message'];
-    $file       = $_POST['file'];
+    $file       = $_FILES['berkas']['name'];
 
     $sqlpelamar = "INSERT INTO pelamar(nama, nomerhp, email, message, dataCV)
             VALUES('$fullname','$phone', '$email', '$message', '$file')";
     $sql = "INSERT INTO pelamar(nama, nomerhp, email, message, dataCV)
             VALUES('$fullname','$phone', '$email', '$message', '$file');";
     $sql .= "SELECT * FROM `pelamar` WHERE nama = '$fullname' AND nomerhp = '$phone' ";
-    // $getidpelamar = mysqli_fetch_array($sqlgetidpelamar);
 
-    // while ($row = $result->fetch_all()) {
-    //     echo "id: " . $row["id"] . "<br>";
-    // }
 
-    // insert pelamar
+    // move file
+    $file_name = $_FILES['berkas']['name'];
+    $file_size = $_FILES['berkas']['size'];
+    $file_tmp = $_FILES['berkas']['tmp_name'];
+    $file_type = $_FILES['berkas']['type'];
+    $file_ext = strtolower(end(explode('.', $_FILES['berkas']['name'])));
+
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["berkas"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    // Check if image file is a actual image or fake image
+    echo "<pre>";
+    print_r($_FILES);
+    echo "</pre>";
+    if (isset($_POST["submit"]) && isset($_FILES['berkas'])) {
+        $file_temp = $_FILES['berkas']['tmp_name'];
+        move_uploaded_file($file_tmp, "uploads/" . $file_name);
+        $info = getimagesize($_FILES['berkas']);
+        echo var_dump($file_temp);
+    } elseif (isset($_POST["submit"]) && !isset($_FILES['berkas'])) {
+        print "Form was submitted but file wasn't send";
+        exit;
+    } else {
+        print "Form wasn't submitted!";
+        exit;
+    }
 
     if (mysqli_query($connection, $sqlpelamar)) {
         // output data of each row
@@ -39,14 +60,12 @@ if (isset($_POST)) {
         // header('Location:index.php');
         $sqlgetidpelamar = "SELECT id FROM `pelamar` WHERE nama = '$fullname' AND nomerhp = '$phone' ";
         // echo var_dump($row);
-        echo "test";
         if ($result = mysqli_query($connection, $sqlgetidpelamar)) {
             # code...
             if (mysqli_num_rows($result) > 0) {
                 # code...
-                echo "ada isi";
                 while ($row = mysqli_fetch_array($result)) {
-                    echo "<br>" . $row['id'] . "</br>";
+                    echo "<br>";
                     $tmp = $row['id'];
                     $sqldaftar = "INSERT INTO daftar(idPelamar, idPosisi) VALUES($tmp, $posisi)";
                     if ($hasil = mysqli_query($connection, $sqldaftar)) {
@@ -74,35 +93,4 @@ if (isset($_POST)) {
 
 
 
-// $temp->pelamar = null;
-
-
-
-
-
-// while ($getidpelamar = mysqli_fetch_array($sqlgetidpelamar)) {
-
-//     // jika berhasil, redirect ke index.php
-//     // echo var_dump($getidpelamar);
-//     echo "di dlalm while";
-//     echo var_dump($getidpelamar);
-//     // echo var_dump($fullname);
-//     // header('Location:index.php');
-//     $temp->pelamar = $getidpelamar['id'];
-//     $sqldaftar = "INSERT INTO daftar(idPelamar, idPosisi)
-//             VALUES($temp->pelamar, $posisi)";
-//     if (mysqli_query($connection, $sqldaftar)) {
-//         echo var_dump($sqldaftar) . '<br>';
-//         echo var_dump($temp->pelamar);
-//         echo "berhasil";
-//         # code...
-//     } else {
-//         // jika tidak, tampilkan pesan gagal menyimpan
-//         echo "Ouppsss..., maap proses menyimpan data tidak berhasil";
-//         echo var_dump($sqldaftar);
-//     }
-// }
-// echo var_dump($temp->pelamar);
-
-// Close connection
 mysqli_close($connection);

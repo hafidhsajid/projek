@@ -42,7 +42,7 @@
                     <h2 class="title">Apply for job <?php print $rowposisi['namaJabatan']; ?></h2>
                 </div>
                 <div class="card-body">
-                    <form action="apply.php" method="POST">
+                    <form action="apply.php" method="POST" enctype="multipart/form-data">
 
                         <input type="hidden" name="posisi" value=" <?= $_POST['aksi'] ?>">
                         <div class="form-row">
@@ -72,6 +72,20 @@
                                     <textarea class="textarea--style-6" name="message" placeholder="Message sent to the employer"></textarea>
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Upload CV</div>
+                            <div class="value">
+                                <div class="input-group js-input-file">
+                                    <input class="input-file" type="file" name="berkas" id="berkas">
+                                    <label class="label--file" for="berkas">Choose file</label>
+                                    <span class="input-file__info">No file chosen</span>
+                                </div>
+                                <div class="label--desc">Upload your CV/Resume or any other relevant file. Max file size 50 MB</div>
+                            </div>
+
+                            <a href="index.php" class="btn btn--radius-2 btn--red btn--pad">Back</a>
                             <button class="btn btn--radius-2 btn--blue-2" value="POST" name="submit" type="submit">Send Application</button>
                         </div>
 
